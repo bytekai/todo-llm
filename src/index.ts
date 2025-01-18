@@ -9,8 +9,11 @@ import { Category, Todo } from "./types.js";
 import { CliTable, InteractiveTable } from "./utils/table.js";
 import { createTodoTable } from "./utils/todo-table.js";
 import { formatDeadline, formatTime } from "./utils/date.js";
+import { fileURLToPath } from "url";
+import path from "path";
 
-const { services, repositories } = createContainer(createClient({ url: "file:todo.db" }));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const { services, repositories } = createContainer(createClient({ url: "file:" + path.join(__dirname, "todo.db") }));
 
 const program = new Command();
 
